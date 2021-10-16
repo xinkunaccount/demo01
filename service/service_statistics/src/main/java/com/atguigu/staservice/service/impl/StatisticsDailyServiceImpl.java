@@ -31,13 +31,9 @@ public class StatisticsDailyServiceImpl extends ServiceImpl<StatisticsDailyMappe
     @Override
     public void countRegister(String day) {
         //每次添加数据之前先删除已有的数据
-
         QueryWrapper<StatisticsDaily>wrapper=new QueryWrapper<>();
         wrapper.eq("date_calculated",day);
         baseMapper.delete(wrapper);
-
-
-
         R registerCount = this.ucenterClient.getRegisterCount(day);
       Integer count=  (Integer) registerCount.getData().get("count");
       StatisticsDaily statisticsDaily=new StatisticsDaily();

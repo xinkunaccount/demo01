@@ -29,12 +29,11 @@ public class VodServiceImpl implements VodService {
     public String uploadVideo(MultipartFile file) {
 
         try {
+            //获取文件名字
             String fileName = file.getOriginalFilename();
             String title = fileName.substring(0, fileName.lastIndexOf("."));
             InputStream inputStream = file.getInputStream();
             UploadStreamRequest request = new UploadStreamRequest(UploadVideoUtils.ACCESS_KEY_ID, UploadVideoUtils.ACCESS_KEY_SECRET, title, fileName, inputStream);
-
-
 
             UploadVideoImpl uploader = new UploadVideoImpl();
             UploadStreamResponse response = uploader.uploadStream(request);
